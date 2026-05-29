@@ -1,0 +1,12 @@
+{
+  "old": {
+    "projectId": "trackify-7de79",
+    "storageBucket": "trackify-7de79.firebasestorage.app",
+    "serviceAccount": "./keys/old-service-account.json"
+  },
+  "new": {
+    "projectId": "internship-management-sy-54089",
+    "storageBucket": "internship-management-sy-54089.firebasestorage.app",
+    "serviceAccount": "./keys/new-service-account.json"
+  }
+}

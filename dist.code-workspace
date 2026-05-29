@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../ims/dist"
+		},
+		{
+			"path": "../../ims/node_modules"
+		},
+		{
+			"path": "../../ims/public"
+		},
+		{
+			"path": "../../ims/src"
+		}
+	]
+}
