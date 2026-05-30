@@ -90,6 +90,13 @@ Add the same `VITE_SUPABASE_*` variables in your host’s environment settings, 
 npm run build
 ```
 
+**SPA routing (required):** Direct links such as `/reset-password` must serve `index.html`. This repo includes:
+
+- `vercel.json` — rewrites all routes to `index.html` on Vercel
+- `public/_redirects` — same for Netlify
+
+After deploy, in Supabase **Authentication → URL Configuration**, set **Site URL** to your production domain and add `https://your-domain.com/reset-password` under **Redirect URLs**.
+
 ---
 
 ## Migrating data from Firebase
