@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { login } from '../../services/authService';
 import { loadProfile } from '../../hooks/useAuth';
 import { useAuthStore } from '../../store/authStore';
@@ -10,11 +10,13 @@ import { ROUTES } from '../../constants/routes';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { setUser, setProfile, setProfileError } = useAuthStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const passwordResetSuccess = location.state?.passwordReset;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,6 +44,11 @@ export default function LoginPage() {
       <div className="card w-full max-w-md">
         <h1 className="text-2xl font-bold text-primary">IMS Login</h1>
         <p className="mt-1 text-slate-500">Internship Management System</p>
+        {passwordResetSuccess && (
+          <p className="mt-4 rounded-btn bg-green-50 p-3 text-sm text-success">
+            Password updated successfully. Sign in with your new password.
+          </p>
+        )}
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <Input
             label="Email"

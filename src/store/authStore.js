@@ -5,10 +5,18 @@ export const useAuthStore = create((set) => ({
   profile: null,
   profileError: null,
   loading: true,
+  passwordRecovery: false,
   setUser: (user) => set({ user }),
   setProfile: (profile) => set({ profile, profileError: null }),
   setProfileError: (profileError) => set({ profileError }),
   setLoading: (loading) => set({ loading }),
+  setPasswordRecovery: (passwordRecovery) => set({ passwordRecovery }),
   clear: () =>
-    set({ user: null, profile: null, profileError: null, loading: false }),
+    set({
+      user: null,
+      profile: null,
+      profileError: null,
+      loading: false,
+      passwordRecovery: false,
+    }),
 }));

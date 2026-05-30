@@ -8,9 +8,13 @@ import Button from '../common/Button';
 import { logout } from '../../services/authService';
 
 export function PublicOnly({ children }) {
-  const { user, profile, profileError, loading } = useAuth();
+  const { user, profile, profileError, loading, passwordRecovery } = useAuth();
 
   if (loading) return <AuthLoading />;
+
+  if (user && passwordRecovery) {
+    return <Navigate to={ROUTES.RESET_PASSWORD} replace />;
+  }
 
   if (user && profile?.role) {
     return <Navigate to={getHomePathForProfile(profile)} replace />;
@@ -24,13 +28,17 @@ export function PublicOnly({ children }) {
 }
 
 export function ProtectedRoute({ allowedRoles }) {
-  const { user, profile, profileError, loading } = useAuth();
+  const { user, profile, profileError, loading, passwordRecovery } = useAuth();
 
   if (!isSupabaseConfigured()) {
     return <SetupRequired />;
   }
   if (loading) return <AuthLoading />;
   if (!user) return <Navigate to={ROUTES.LOGIN} replace />;
+
+  if (passwordRecovery) {
+    return <Navigate to={ROUTES.RESET_PASSWORD} replace />;
+  }
 
   if (!profile?.role) {
     return <ProfileSetupRequired error={profileError} />;

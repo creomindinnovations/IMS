@@ -1,4 +1,5 @@
 import { requireSupabase } from './supabase';
+import { ROUTES } from '../constants/routes';
 
 export function normalizeUser(supabaseUser) {
   if (!supabaseUser) return null;
@@ -23,9 +24,20 @@ export async function logout() {
 
 export async function resetPassword(email) {
   const sb = requireSupabase();
-  const redirectTo = `${window.location.origin}/login`;
+  const redirectTo = getResetPasswordRedirectUrl();
   const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo });
   if (error) throw error;
+}
+
+export function getResetPasswordRedirectUrl() {
+  return `${window.location.origin}${ROUTES.RESET_PASSWORD}`;
+}
+
+export function isPasswordRecoveryUrl() {
+  const hash = window.location.hash.replace(/^#/, '');
+  const search = window.location.search.replace(/^\?/, '');
+  const params = new URLSearchParams(hash || search);
+  return params.get('type') === 'recovery';
 }
 
 export async function changePassword(newPassword) {

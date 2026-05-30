@@ -30,12 +30,14 @@ export async function deleteAnnouncement(id) {
 }
 
 export function filterAnnouncementsForUser(announcements, user) {
+  if (!user) return [];
   return announcements.filter((a) => {
-    if (a.scope === 'global') return true;
-    if (a.scope?.startsWith('team:') && user?.teamLeadId) {
-      return a.scope === `team:${user.teamLeadId}`;
+    const scope = a.scope || 'global';
+    if (scope === 'global') return true;
+    if (scope.startsWith('team:') && user.teamLeadId) {
+      return scope === `team:${user.teamLeadId}`;
     }
-    if (user?.role === 'teamlead' && a.scope === `team:${user.uid}`) return true;
+    if (user.role === 'teamlead' && scope === `team:${user.uid}`) return true;
     return false;
   });
 }

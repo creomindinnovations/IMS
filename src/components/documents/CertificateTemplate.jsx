@@ -1,8 +1,8 @@
 export default function CertificateTemplate({ data, qrDataUrl, settings }) {
   const company = settings?.companyName || import.meta.env.VITE_COMPANY_NAME || 'Your Startup';
   const title =
-    data.type === 'appreciation'
-      ? 'Certificate of Appreciation'
+    data.type === 'recommendation' || data.type === 'appreciation'
+      ? 'Letter of Recommendation'
       : 'Certificate of Completion';
 
   return (

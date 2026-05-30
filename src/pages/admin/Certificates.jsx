@@ -93,7 +93,7 @@ export default function Certificates() {
         </select>
         <select className="input-field" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
           <option value="completion">Completion</option>
-          <option value="appreciation">Appreciation</option>
+          <option value="recommendation">Letter of Recommendation</option>
         </select>
         <Button onClick={handleCreate}>Generate request</Button>
       </div>

@@ -6,7 +6,7 @@ import Skeleton from '../common/Skeleton';
 
 /** Sends `/` to login or the role dashboard. */
 export default function HomeRedirect() {
-  const { user, profile, loading } = useAuth();
+  const { user, profile, loading, passwordRecovery } = useAuth();
 
   if (loading) {
     return (
@@ -14,6 +14,10 @@ export default function HomeRedirect() {
         <Skeleton className="h-8 w-48" />
       </div>
     );
+  }
+
+  if (user && passwordRecovery) {
+    return <Navigate to={ROUTES.RESET_PASSWORD} replace />;
   }
 
   if (user && profile?.role) {

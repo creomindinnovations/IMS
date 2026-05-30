@@ -7,6 +7,7 @@ import { ROUTES } from './constants/routes';
 
 import LoginPage from './pages/auth/LoginPage';
 import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
+import ResetPasswordPage from './pages/auth/ResetPasswordPage';
 import InternDashboard from './pages/intern/InternDashboard';
 import MyAttendance from './pages/intern/MyAttendance';
 import TutorialsPage from './pages/intern/TutorialsPage';
@@ -50,6 +51,7 @@ export default function App() {
             </PublicOnly>
           }
         />
+        <Route path={ROUTES.RESET_PASSWORD} element={<ResetPasswordPage />} />
 
         <Route element={<ProtectedRoute allowedRoles={[ROLES.INTERN]} />}>
           <Route path={ROUTES.INTERN} element={<InternDashboard />} />

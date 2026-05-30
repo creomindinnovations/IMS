@@ -1,8 +1,9 @@
 import { useEffect, useCallback } from 'react';
 import { supabase, isSupabaseConfigured } from '../services/supabase';
-import { normalizeUser } from '../services/authService';
+import { normalizeUser, isPasswordRecoveryUrl } from '../services/authService';
 import { getUser } from '../services/userService';
 import { useAuthStore } from '../store/authStore';
+import { ROUTES } from '../constants/routes';
 
 export async function loadProfile(uid) {
   const profile = await getUser(uid);
@@ -15,7 +16,8 @@ export async function loadProfile(uid) {
 }
 
 export function useAuthInit() {
-  const { setUser, setProfile, setProfileError, setLoading, clear } = useAuthStore();
+  const { setUser, setProfile, setProfileError, setLoading, setPasswordRecovery, clear } =
+    useAuthStore();
 
   const syncProfile = useCallback(
     async (sessionUser) => {
@@ -44,21 +46,37 @@ export function useAuthInit() {
       return undefined;
     }
 
+    if (isPasswordRecoveryUrl()) {
+      setPasswordRecovery(true);
+      if (!window.location.pathname.startsWith(ROUTES.RESET_PASSWORD)) {
+        window.location.replace(
+          `${ROUTES.RESET_PASSWORD}${window.location.hash}${window.location.search}`,
+        );
+        return undefined;
+      }
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       syncProfile(session?.user ?? null);
     });
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        setPasswordRecovery(true);
+      }
+      if (event === 'SIGNED_OUT') {
+        setPasswordRecovery(false);
+      }
       syncProfile(session?.user ?? null);
     });
 
     return () => subscription.unsubscribe();
-  }, [syncProfile, setLoading]);
+  }, [syncProfile, setLoading, setPasswordRecovery]);
 }
 
 export function useAuth() {
-  const { user, profile, profileError, loading } = useAuthStore();
-  return { user, profile, profileError, loading, role: profile?.role };
+  const { user, profile, profileError, loading, passwordRecovery } = useAuthStore();
+  return { user, profile, profileError, loading, passwordRecovery, role: profile?.role };
 }
