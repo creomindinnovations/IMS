@@ -123,6 +123,10 @@ export async function deactivateUser(uid) {
   await updateUser(uid, { isActive: false });
 }
 
+export async function reactivateUser(uid) {
+  await updateUser(uid, { isActive: true });
+}
+
 export async function deleteUser(uid) {
   const sb = requireSupabase();
   const { error } = await sb.from('users').delete().eq('id', uid);

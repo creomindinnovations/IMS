@@ -5,7 +5,7 @@ import Modal from '../../components/common/Modal';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 import InternDetailsView from '../../components/admin/InternDetailsView';
-import { getAllUsers, createUserAccount, deactivateUser } from '../../services/userService';
+import { getAllUsers, createUserAccount, deactivateUser, reactivateUser } from '../../services/userService';
 import { ROLES } from '../../constants/roles';
 import { useUiStore } from '../../store/uiStore';
 import { formatDate } from '../../utils/dateUtils';
@@ -139,7 +139,7 @@ export default function ManageInterns() {
           <Button variant="secondary" onClick={() => setSelectedIntern(r)}>
             Details
           </Button>
-          {r.isActive !== false && (
+          {r.isActive !== false ? (
             <Button
               variant="secondary"
               onClick={() =>
@@ -150,6 +150,18 @@ export default function ManageInterns() {
               }
             >
               Deactivate
+            </Button>
+          ) : (
+            <Button
+              variant="secondary"
+              onClick={() =>
+                reactivateUser(r.uid).then(() => {
+                  addToast('Reactivated');
+                  load();
+                })
+              }
+            >
+              Reactivate
             </Button>
           )}
         </div>
