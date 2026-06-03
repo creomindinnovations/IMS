@@ -9,18 +9,23 @@ import { getAllUsers } from '../../services/userService';
 import { formatTime, todayKey } from '../../utils/dateUtils';
 import { ROLES } from '../../constants/roles';
 
-function buildCsv(rows, nameByUid) {
+function internLabel(row) {
+  const name = row.internName?.trim();
+  if (name) return name;
+  return row.uid || '—';
+}
+
+function buildCsv(rows) {
   const header = 'Date,Intern Name,Email,UID,Status,Check In,Check Out,Duration (min)\n';
   const body = rows
     .map((r) => {
-      const info = nameByUid[r.uid] || {};
-      const name = (info.name || r.uid).replace(/,/g, ' ');
-      const email = (info.email || '').replace(/,/g, ' ');
+      const name = internLabel(r).replace(/,/g, ' ');
+      const email = (r.internEmail || '').replace(/,/g, ' ');
       return [
         r.date,
         name,
         email,
-        r.uid,
+        r.uid || '',
         r.status || '',
         formatTime(r.checkIn),
         formatTime(r.checkOut),
@@ -34,28 +39,28 @@ function buildCsv(rows, nameByUid) {
 export default function AdminAttendance() {
   const [date, setDate] = useState(todayKey());
   const [rows, setRows] = useState([]);
-  const [nameByUid, setNameByUid] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    Promise.all([
-      getAllAttendance(date || undefined),
-      getAllUsers(ROLES.INTERN),
-    ])
+    Promise.all([getAllAttendance(date || undefined), getAllUsers(ROLES.INTERN)])
       .then(([attendance, interns]) => {
-        const map = {};
-        interns.forEach((u) => {
-          map[u.uid] = { name: u.name, email: u.email };
-        });
-        setNameByUid(map);
-        setRows(attendance);
+        const nameByUid = Object.fromEntries(
+          interns.map((u) => [u.uid, { name: u.name, email: u.email }]),
+        );
+        setRows(
+          attendance.map((r) => ({
+            ...r,
+            internName: r.internName || nameByUid[r.uid]?.name || '',
+            internEmail: r.internEmail || nameByUid[r.uid]?.email || '',
+          })),
+        );
       })
       .finally(() => setLoading(false));
   }, [date]);
 
   const exportCsv = () => {
-    const blob = new Blob([buildCsv(rows, nameByUid)], { type: 'text/csv;charset=utf-8;' });
+    const blob = new Blob([buildCsv(rows)], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -67,9 +72,9 @@ export default function AdminAttendance() {
   const columns = [
     { key: 'date', label: 'Date' },
     {
-      key: 'name',
+      key: 'internName',
       label: 'Intern',
-      render: (r) => nameByUid[r.uid]?.name || r.uid,
+      render: (r) => internLabel(r),
     },
     { key: 'checkIn', label: 'Check In', render: (r) => formatTime(r.checkIn) },
     { key: 'checkOut', label: 'Check Out', render: (r) => formatTime(r.checkOut) },
@@ -92,7 +97,7 @@ export default function AdminAttendance() {
       {loading ? (
         <p className="text-slate-500">Loading attendance…</p>
       ) : (
-        <DataTable columns={columns} rows={rows} emptyMessage="No attendance records for this date." />
+        <DataTable columns={columns} rows={rows} rowKey="id" emptyMessage="No attendance records for this date." />
       )}
     </PageWrapper>
   );

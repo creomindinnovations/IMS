@@ -63,13 +63,24 @@ export async function getAttendanceForUser(uid) {
     .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 }
 
+function mapAttendanceRow(row) {
+  const { users: profile, ...rest } = row;
+  const doc = rowToDoc(rest);
+  if (profile?.name) doc.internName = profile.name;
+  if (profile?.email) doc.internEmail = profile.email;
+  return doc;
+}
+
 export async function getAllAttendance(dateFilter) {
   const sb = requireSupabase();
-  let q = sb.from('attendance').select('*').order('date', { ascending: false });
+  let q = sb
+    .from('attendance')
+    .select('*, users(name, email)')
+    .order('date', { ascending: false });
   if (dateFilter) q = q.eq('date', dateFilter);
   const { data, error } = await q;
   throwIfError(error);
-  return (data || []).map((row) => rowToDoc(row));
+  return (data || []).map(mapAttendanceRow);
 }
 
 export function calcAttendancePercentage(records, workingDays = 22) {

@@ -29,9 +29,9 @@ export default function TeamAttendance() {
 
   const columns = [
     {
-      key: 'name',
+      key: 'internName',
       label: 'Intern',
-      render: (r) => nameByUid[r.uid] || r.uid,
+      render: (r) => r.internName?.trim() || nameByUid[r.uid] || r.uid,
     },
     { key: 'checkIn', label: 'Check In', render: (r) => formatTime(r.checkIn) },
     { key: 'status', label: 'Status', render: (r) => <Badge status={r.status} /> },
