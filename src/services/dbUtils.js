@@ -43,7 +43,10 @@ export function rowToDoc(row, { idField = 'id', extraIdKey } = {}) {
   if (idField && row[idField] != null) {
     out.id = row[idField];
     if (extraIdKey) out[extraIdKey] = row[idField];
-    out.uid = row[idField];
+    // Tables like attendance have their own uid column; do not replace it with the row id.
+    if (row.uid == null) {
+      out.uid = row[idField];
+    }
   }
   return out;
 }
