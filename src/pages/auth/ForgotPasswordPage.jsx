@@ -21,9 +21,9 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface p-4">
+    <div className="flex min-h-screen items-center justify-center p-4">
       <div className="card w-full max-w-md">
-        <h1 className="text-xl font-bold text-primary">Reset Password</h1>
+        <h1 className="text-xl font-bold">Reset Password</h1>
         {sent ? (
           <p className="mt-4 text-success">Check your email for a reset link.</p>
         ) : (
@@ -41,7 +41,7 @@ export default function ForgotPasswordPage() {
             </Button>
           </form>
         )}
-        <Link to={ROUTES.LOGIN} className="mt-4 block text-center text-sm text-accent">
+        <Link to={ROUTES.LOGIN} className="link-accent mt-4 block text-center text-sm">
           Back to login
         </Link>
       </div>

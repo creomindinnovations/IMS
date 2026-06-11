@@ -118,9 +118,7 @@ export default function TutorialsPage() {
         <button
           type="button"
           onClick={() => setCategory('all')}
-          className={`rounded-btn px-3 py-2 text-sm font-medium ${
-            category === 'all' ? 'bg-accent text-white' : 'bg-white border border-border'
-          }`}
+          className={`filter-chip ${category === 'all' ? 'filter-chip-active' : ''}`}
         >
           All ({tutorials.length})
         </button>
@@ -131,9 +129,7 @@ export default function TutorialsPage() {
               key={c.id}
               type="button"
               onClick={() => setCategory(c.id)}
-              className={`rounded-btn px-3 py-2 text-sm font-medium ${
-                category === c.id ? 'bg-accent text-white' : 'bg-white border border-border'
-              }`}
+              className={`filter-chip ${category === c.id ? 'filter-chip-active' : ''}`}
             >
               {c.label} ({count})
             </button>

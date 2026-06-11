@@ -11,38 +11,35 @@ function columnLabel(col) {
 
 export default function DataTable({ columns, rows, rowKey = 'id', emptyMessage = 'No records found.' }) {
   if (!rows?.length) {
-    return <p className="py-8 text-center text-slate-500">{emptyMessage}</p>;
+    return <p className="py-8 text-center text-muted">{emptyMessage}</p>;
   }
 
   return (
     <>
       <div className="space-y-3 md:hidden">
         {rows.map((row, i) => (
-          <div
-            key={row[rowKey] || row.id || row.uid || i}
-            className="rounded-card border border-border bg-white p-4 shadow-sm"
-          >
+          <div key={row[rowKey] || row.id || row.uid || i} className="glass-pop">
             {columns.map((col) => (
               <div
                 key={col.key}
-                className="flex items-start justify-between gap-3 border-b border-border py-2.5 text-sm last:border-0"
+                className="flex items-start justify-between gap-3 border-b border-[var(--glass-border)] py-2.5 text-sm last:border-0"
               >
-                <span className="shrink-0 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <span className="shrink-0 text-xs font-medium uppercase tracking-wide text-muted">
                   {columnLabel(col)}
                 </span>
-                <span className="min-w-0 text-right font-medium text-slate-800">{cellContent(col, row)}</span>
+                <span className="min-w-0 text-right font-medium">{cellContent(col, row)}</span>
               </div>
             ))}
           </div>
         ))}
       </div>
 
-      <div className="hidden overflow-x-auto rounded-card border border-border md:block">
+      <div className="glass-table-wrap hidden md:block">
         <table className="w-full min-w-[640px] text-left text-sm">
-          <thead className="border-b border-border bg-slate-50">
+          <thead className="border-b border-[var(--glass-border)]">
             <tr>
               {columns.map((col) => (
-                <th key={col.key} className="whitespace-nowrap px-4 py-3 font-medium text-slate-600">
+                <th key={col.key} className="whitespace-nowrap px-4 py-3 font-medium text-muted">
                   {col.label}
                 </th>
               ))}
@@ -52,7 +49,7 @@ export default function DataTable({ columns, rows, rowKey = 'id', emptyMessage =
             {rows.map((row, i) => (
               <tr
                 key={row[rowKey] || row.id || row.uid || i}
-                className="border-b border-border last:border-0 hover:bg-slate-50/80"
+                className="border-b border-[var(--glass-border)] last:border-0"
               >
                 {columns.map((col) => (
                   <td key={col.key} className="px-4 py-3 align-top">

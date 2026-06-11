@@ -86,7 +86,11 @@ export default function AdminDashboard() {
               ['/admin/certificates', 'Certificates'],
               ['/admin/announcements', 'Post Announcement'],
             ].map(([to, label]) => (
-              <Link key={to} to={to} className="rounded-btn border border-border px-4 py-3 text-sm hover:bg-slate-50">
+              <Link
+                key={to}
+                to={to}
+                className="card rounded-xl px-4 py-3 text-sm !p-4 hover:no-underline"
+              >
                 {label}
               </Link>
             ))}

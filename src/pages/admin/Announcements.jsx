@@ -44,9 +44,9 @@ export default function Announcements() {
         </label>
         <Button type="submit">Post</Button>
       </form>
-      <ul className="space-y-2">
+      <ul className="space-y-3">
         {list.map((a) => (
-          <li key={a.id} className="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <li key={a.id} className="glass-pop flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0 flex-1">
               <p className="font-medium">{a.title}</p>
               <p className="mt-1 text-sm text-slate-600">{a.body}</p>

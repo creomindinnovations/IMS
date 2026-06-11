@@ -40,12 +40,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface p-4">
+    <div className="flex min-h-screen items-center justify-center p-4">
       <div className="card w-full max-w-md">
-        <h1 className="text-2xl font-bold text-primary">IMS Login</h1>
-        <p className="mt-1 text-slate-500">Internship Management System</p>
+        <h1 className="text-2xl font-bold">IMS Login</h1>
+        <p className="mt-1 text-muted">Internship Management System</p>
         {passwordResetSuccess && (
-          <p className="mt-4 rounded-btn bg-green-50 p-3 text-sm text-success">
+          <p className="glass-pop mt-4 text-sm text-success">
             Password updated successfully. Sign in with your new password.
           </p>
         )}
@@ -71,7 +71,7 @@ export default function LoginPage() {
             {loading ? 'Signing in…' : 'Sign In'}
           </Button>
         </form>
-        <Link to={ROUTES.FORGOT_PASSWORD} className="mt-4 block text-center text-sm text-accent">
+        <Link to={ROUTES.FORGOT_PASSWORD} className="link-accent mt-4 block text-center text-sm">
           Forgot password?
         </Link>
       </div>

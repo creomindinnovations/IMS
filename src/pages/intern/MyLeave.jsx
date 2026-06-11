@@ -90,7 +90,7 @@ export default function MyLeave() {
       ) : (
         <ul className="space-y-3">
           {requests.map((r) => (
-            <li key={r.id} className="card">
+            <li key={r.id} className="glass-pop">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="font-medium">
                   {formatDate(parseInputDate(r.startDate))} – {formatDate(parseInputDate(r.endDate))}

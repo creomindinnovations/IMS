@@ -20,7 +20,7 @@ export default function ResetPasswordPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-surface p-8">
+      <div className="flex min-h-screen items-center justify-center p-8">
         <div className="w-full max-w-md space-y-4">
           <Skeleton className="h-8 w-48" />
           <Skeleton className="h-4 w-full" />
@@ -69,10 +69,10 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface p-4">
+    <div className="flex min-h-screen items-center justify-center p-4">
       <div className="card w-full max-w-md">
-        <h1 className="text-xl font-bold text-primary">Set New Password</h1>
-        <p className="mt-2 text-sm text-slate-600">
+        <h1 className="text-xl font-bold">Set New Password</h1>
+        <p className="mt-2 text-sm text-muted">
           Choose a new password for your account. This works for admin and intern accounts.
         </p>
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -99,7 +99,7 @@ export default function ResetPasswordPage() {
             {submitting ? 'Updating…' : 'Update Password'}
           </Button>
         </form>
-        <Link to={ROUTES.LOGIN} className="mt-4 block text-center text-sm text-accent">
+        <Link to={ROUTES.LOGIN} className="link-accent mt-4 block text-center text-sm">
           Back to login
         </Link>
       </div>

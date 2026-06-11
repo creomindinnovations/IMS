@@ -5,10 +5,10 @@ export default function StatCard({ icon, label, value, sub }) {
         <span className="text-2xl" aria-hidden>
           {icon}
         </span>
-        {sub && <span className="text-xs text-slate-500">{sub}</span>}
+        {sub && <span className="text-xs text-muted">{sub}</span>}
       </div>
       <p className="font-mono text-2xl font-semibold text-primary">{value}</p>
-      <p className="text-sm text-slate-600">{label}</p>
+      <p className="text-sm text-muted">{label}</p>
     </div>
   );
 }

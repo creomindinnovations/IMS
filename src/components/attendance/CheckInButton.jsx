@@ -57,19 +57,19 @@ export default function CheckInButton({ uid, todayRecord, onUpdate }) {
     <div className="card space-y-4">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h3 className="font-semibold text-primary">Attendance Clock</h3>
-          <p className="mt-1 text-sm text-slate-500">Check in when you start work, check out when you finish.</p>
+          <h3 className="font-semibold">Attendance Clock</h3>
+          <p className="mt-1 text-sm text-muted">Check in when you start work, check out when you finish.</p>
         </div>
         <LiveClock />
       </div>
 
       {hasCheckIn && (
-        <div className="rounded-lg bg-slate-50 p-3 text-sm">
+        <div className="glass-pop text-sm">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-slate-500">Status:</span>
+            <span className="text-muted">Status:</span>
             <Badge status={todayRecord.status} />
           </div>
-          <p className="mt-2 font-mono text-slate-700">
+          <p className="mt-2 font-mono">
             Check-in: {formatTime(todayRecord.checkIn)}
             {hasCheckOut && (
               <>

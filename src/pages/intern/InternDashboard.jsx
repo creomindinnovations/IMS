@@ -107,7 +107,7 @@ export default function InternDashboard() {
         <CheckInButton uid={profile?.uid} todayRecord={today} onUpdate={load} />
         <div className="card">
           <h3 className="font-semibold text-primary">Profile</h3>
-          <dl className="mt-4 space-y-2 text-sm">
+          <dl className="glass-pop mt-4 space-y-2 text-sm">
             <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
               <dt className="text-slate-500">Name</dt>
               <dd className="font-medium">{profile?.name}</dd>
@@ -127,11 +127,11 @@ export default function InternDashboard() {
         {announcements.length === 0 ? (
           <p className="mt-4 text-slate-500">No announcements yet.</p>
         ) : (
-          <ul className="mt-4 divide-y divide-border">
+          <ul className="mt-4 space-y-3">
             {announcements.map((a) => (
-              <li key={a.id} className="py-3">
+              <li key={a.id} className="glass-pop">
                 <p className="font-medium">{a.title}</p>
-                <p className="mt-1 text-slate-600">{a.body}</p>
+                <p className="mt-1 text-muted">{a.body}</p>
               </li>
             ))}
           </ul>

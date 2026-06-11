@@ -4,9 +4,9 @@ import { ROLE_LABELS } from '../../constants/roles';
 
 function DetailRow({ label, value }) {
   return (
-    <div className="flex flex-col gap-1 border-b border-border py-2 text-sm last:border-0 sm:flex-row sm:justify-between sm:gap-4">
-      <span className="text-slate-500">{label}</span>
-      <span className="font-medium text-slate-800 sm:text-right">{value || '—'}</span>
+    <div className="flex flex-col gap-1 border-b border-white/40 py-2 text-sm last:border-0 sm:flex-row sm:justify-between sm:gap-4">
+      <span className="text-muted">{label}</span>
+      <span className="font-medium sm:text-right">{value || '—'}</span>
     </div>
   );
 }
@@ -17,19 +17,19 @@ export default function InternDetailsView({ intern, teamLeadName, loginCredentia
   return (
     <div className="space-y-4">
       {loginCredentials && (
-        <div className="rounded-btn border border-accent/30 bg-blue-50 p-4">
+        <div className="glass-pop">
           <h3 className="text-sm font-semibold text-primary">Login credentials (share with intern)</h3>
-          <p className="mt-1 text-xs text-slate-600">
+          <p className="mt-1 text-xs text-muted">
             The intern signs in at the login page with this email and password.
           </p>
           <dl className="mt-3 space-y-2 font-mono text-sm">
             <div>
-              <dt className="text-xs text-slate-500">Email</dt>
-              <dd className="font-medium text-slate-900">{loginCredentials.email}</dd>
+              <dt className="text-xs text-muted">Email</dt>
+              <dd className="font-medium">{loginCredentials.email}</dd>
             </div>
             <div>
-              <dt className="text-xs text-slate-500">Password</dt>
-              <dd className="font-medium text-slate-900">{loginCredentials.password}</dd>
+              <dt className="text-xs text-muted">Password</dt>
+              <dd className="font-medium">{loginCredentials.password}</dd>
             </div>
           </dl>
           {onCopyCredentials && (
@@ -40,7 +40,7 @@ export default function InternDetailsView({ intern, teamLeadName, loginCredentia
         </div>
       )}
 
-      <div className="rounded-btn border border-border p-3">
+      <div className="glass-pop">
         <h3 className="mb-2 text-sm font-semibold text-primary">Intern details</h3>
         <DetailRow label="Name" value={intern.name} />
         <DetailRow label="Email" value={intern.email} />

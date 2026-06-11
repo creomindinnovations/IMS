@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthInit } from './hooks/useAuth';
 import { PublicOnly, ProtectedRoute } from './components/layout/AuthGuard';
 import ToastContainer from './components/common/Toast';
+import GlassSettings from './components/common/GlassSettings';
 import { ROLES } from './constants/roles';
 import { ROUTES } from './constants/routes';
 
@@ -33,6 +34,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ToastContainer />
+      <GlassSettings />
       <Routes>
         <Route path="/verify/:certId" element={<VerifyPage />} />
         <Route

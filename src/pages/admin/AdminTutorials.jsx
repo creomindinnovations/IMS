@@ -144,9 +144,9 @@ export default function AdminTutorials() {
           {submitting ? 'Uploading…' : 'Upload'}
         </Button>
       </form>
-      <ul className="space-y-2">
+      <ul className="space-y-3">
         {list.map((t) => (
-          <li key={t.id} className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <li key={t.id} className="glass-pop flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <span className="min-w-0">
               <span className="font-medium">{t.title}</span>{' '}
               <span className="text-xs text-slate-500">

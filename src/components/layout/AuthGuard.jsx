@@ -57,7 +57,7 @@ export function ProtectedRoute({ allowedRoles }) {
 
 function AuthLoading() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface p-8">
+    <div className="flex min-h-screen items-center justify-center p-8">
       <div className="w-full max-w-md space-y-4">
         <Skeleton className="h-8 w-48" />
         <Skeleton className="h-4 w-full" />
@@ -74,7 +74,7 @@ function ProfileSetupRequired({ error }) {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface p-4">
+    <div className="flex min-h-screen items-center justify-center p-4">
       <div className="card max-w-lg">
         <h1 className="text-xl font-semibold text-primary">Profile not found</h1>
         <p className="mt-3 text-sm text-slate-600">
@@ -104,7 +104,7 @@ function ProfileSetupRequired({ error }) {
 
 function SetupRequired() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface p-8">
+    <div className="flex min-h-screen items-center justify-center p-8">
       <div className="card max-w-lg text-center">
         <h1 className="text-xl font-semibold text-primary">Supabase setup required</h1>
         <p className="mt-4 text-slate-600">

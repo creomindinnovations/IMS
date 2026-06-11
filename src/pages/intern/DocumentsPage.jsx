@@ -23,11 +23,11 @@ export default function DocumentsPage() {
         {letters.length === 0 ? (
           <p className="mt-4 text-slate-500">No offer letter available yet.</p>
         ) : (
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-4 space-y-3">
             {letters.map((l) => (
               <li
                 key={l.firestoreId}
-                className="flex flex-col gap-2 border-b border-border py-3 sm:flex-row sm:items-center sm:justify-between"
+                className="glass-pop flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
               >
                 <span className="break-all font-mono text-sm">{l.id}</span>
                 {l.pdfUrl && (
@@ -50,11 +50,11 @@ export default function DocumentsPage() {
         {certs.length === 0 ? (
           <p className="mt-4 text-slate-500">No certificates yet.</p>
         ) : (
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-4 space-y-3">
             {certs.map((c) => (
               <li
                 key={c.id}
-                className="flex flex-col gap-2 border-b border-border py-3 sm:flex-row sm:items-center sm:justify-between"
+                className="glass-pop flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
               >
                 <span className="flex flex-wrap items-center gap-2">
                   <span className="break-all font-mono text-sm">{c.certId}</span>

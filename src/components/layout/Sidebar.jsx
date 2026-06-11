@@ -42,13 +42,15 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-40 flex w-60 flex-col bg-primary text-white shadow-xl transition-transform duration-300 ease-in-out md:static md:shadow-none md:transition-[width] ${
+      className={`nav-bar fixed inset-y-0 left-0 z-40 flex w-60 flex-col transition-transform duration-300 ease-in-out md:static md:transition-[width] ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
       } ${sidebarOpen ? 'md:w-60' : 'md:w-16'}`}
     >
-      <div className="flex h-14 shrink-0 items-center justify-between gap-2 border-b border-white/10 px-4">
+      <div className="flex h-14 shrink-0 items-center justify-between gap-2 border-b border-white/15 px-4">
         <div className="flex min-w-0 items-center gap-2">
-          <span className="text-lg font-bold">IMS</span>
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/15 text-sm font-bold text-white">
+            IMS
+          </span>
           {sidebarOpen && (
             <span className="truncate text-xs text-white/70">
               {import.meta.env.VITE_APP_NAME || 'Internship MS'}
@@ -58,7 +60,7 @@ export default function Sidebar() {
         <button
           type="button"
           onClick={toggleSidebar}
-          className="hidden shrink-0 rounded-btn p-1.5 text-white/80 hover:bg-white/10 md:inline-flex"
+          className="hidden shrink-0 rounded-btn p-1.5 text-white/80 hover:bg-white/15 md:inline-flex"
           aria-label={sidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
         >
           {sidebarOpen ? '‹' : '›'}
@@ -73,8 +75,10 @@ export default function Sidebar() {
             onClick={closeMobileSidebar}
             title={!sidebarOpen ? link.label : undefined}
             className={({ isActive }) =>
-              `flex min-h-[44px] items-center rounded-btn px-3 text-sm transition ${
-                isActive ? 'bg-accent text-white' : 'text-white/80 hover:bg-white/10'
+              `flex min-h-[44px] items-center rounded-xl px-3 text-sm font-medium transition ${
+                isActive
+                  ? 'bg-white/20 text-white'
+                  : 'text-white/75 hover:bg-white/10 hover:text-white'
               } ${!sidebarOpen ? 'md:justify-center md:px-0' : ''}`
             }
           >

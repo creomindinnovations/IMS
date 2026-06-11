@@ -43,9 +43,7 @@ export default function AdminLeaves() {
             key={f}
             type="button"
             onClick={() => setFilter(f)}
-            className={`rounded-btn px-3 py-2 text-sm font-medium capitalize ${
-              filter === f ? 'bg-accent text-white' : 'bg-white border border-border'
-            }`}
+            className={`filter-chip capitalize ${filter === f ? 'filter-chip-active' : ''}`}
           >
             {f}
           </button>
@@ -55,9 +53,9 @@ export default function AdminLeaves() {
       {rows.length === 0 ? (
         <p className="text-slate-500">No leave requests in this category.</p>
       ) : (
-        <ul className="space-y-4">
+        <ul className="space-y-3">
           {rows.map((r) => (
-            <li key={r.id} className="card">
+            <li key={r.id} className="glass-pop">
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
                   <p className="font-semibold text-primary">{r.internName || r.uid}</p>

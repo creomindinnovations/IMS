@@ -98,9 +98,9 @@ export default function Certificates() {
         <Button className="w-full sm:w-auto" onClick={handleCreate}>Generate request</Button>
       </div>
 
-      <ul className="space-y-2">
+      <ul className="space-y-3">
         {certs.map((c) => (
-          <li key={c.id} className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <li key={c.id} className="glass-pop flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <span className="break-all font-mono text-sm">{c.certId}</span>
             <div className="flex flex-wrap items-center gap-2">
               <Badge status={c.status} />

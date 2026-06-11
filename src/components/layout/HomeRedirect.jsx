@@ -10,7 +10,7 @@ export default function HomeRedirect() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-surface">
+      <div className="flex min-h-screen items-center justify-center">
         <Skeleton className="h-8 w-48" />
       </div>
     );

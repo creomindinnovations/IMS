@@ -15,7 +15,7 @@ export default function PageWrapper({ title, children }) {
       {sidebarOpen && (
         <button
           type="button"
-          className="fixed inset-0 z-30 bg-black/50 md:hidden"
+          className="fixed inset-0 z-30 bg-black/30 md:hidden"
           aria-label="Close menu"
           onClick={() => setSidebarOpen(false)}
         />
