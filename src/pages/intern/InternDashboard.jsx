@@ -63,7 +63,7 @@ export default function InternDashboard() {
   if (loading) {
     return (
       <PageWrapper title="Dashboard">
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           <Skeleton className="h-32" />
           <Skeleton className="h-32" />
           <Skeleton className="h-32" />
@@ -92,7 +92,7 @@ export default function InternDashboard() {
 
   return (
     <PageWrapper title="Dashboard">
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         <StatCard icon="📅" label="Attendance %" value={`${pct}%`} />
         <StatCard
           icon="📚"
@@ -108,13 +108,13 @@ export default function InternDashboard() {
         <div className="card">
           <h3 className="font-semibold text-primary">Profile</h3>
           <dl className="mt-4 space-y-2 text-sm">
-            <div className="flex justify-between">
+            <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
               <dt className="text-slate-500">Name</dt>
-              <dd>{profile?.name}</dd>
+              <dd className="font-medium">{profile?.name}</dd>
             </div>
-            <div className="flex justify-between">
+            <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
               <dt className="text-slate-500">Duration</dt>
-              <dd>
+              <dd className="font-medium">
                 {formatDate(profile?.startDate)} – {formatDate(profile?.endDate)}
               </dd>
             </div>

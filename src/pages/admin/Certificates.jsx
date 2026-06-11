@@ -84,30 +84,32 @@ export default function Certificates() {
 
   return (
     <PageWrapper title="Certificates">
-      <div className="card mb-6 flex flex-wrap gap-4">
-        <select className="input-field" value={form.internUid} onChange={(e) => setForm({ ...form, internUid: e.target.value })}>
+      <div className="card mb-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end">
+        <select className="input-field w-full sm:min-w-[200px] sm:flex-1" value={form.internUid} onChange={(e) => setForm({ ...form, internUid: e.target.value })}>
           <option value="">Select intern</option>
           {interns.map((i) => (
             <option key={i.uid} value={i.uid}>{i.name}</option>
           ))}
         </select>
-        <select className="input-field" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
+        <select className="input-field w-full sm:min-w-[180px] sm:flex-1" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
           <option value="completion">Completion</option>
           <option value="recommendation">Letter of Recommendation</option>
         </select>
-        <Button onClick={handleCreate}>Generate request</Button>
+        <Button className="w-full sm:w-auto" onClick={handleCreate}>Generate request</Button>
       </div>
 
       <ul className="space-y-2">
         {certs.map((c) => (
-          <li key={c.id} className="card flex items-center justify-between">
-            <span className="font-mono text-sm">{c.certId}</span>
-            <Badge status={c.status} />
-            {c.status === 'pending' && (
-              <Button onClick={() => setPreview({ id: c.id, certId: c.certId, intern: interns.find((i) => i.uid === c.internUid) })}>
-                Approve
-              </Button>
-            )}
+          <li key={c.id} className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <span className="break-all font-mono text-sm">{c.certId}</span>
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge status={c.status} />
+              {c.status === 'pending' && (
+                <Button onClick={() => setPreview({ id: c.id, certId: c.certId, intern: interns.find((i) => i.uid === c.internUid) })}>
+                  Approve
+                </Button>
+              )}
+            </div>
           </li>
         ))}
       </ul>

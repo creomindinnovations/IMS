@@ -24,7 +24,7 @@ export default function LeadDashboard() {
 
   return (
     <PageWrapper title="Team Lead Dashboard">
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <StatCard icon="👥" label="Team members" value={teamSize} />
         <StatCard icon="✅" label="Present today" value={present} />
       </div>

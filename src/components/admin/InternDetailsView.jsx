@@ -4,9 +4,9 @@ import { ROLE_LABELS } from '../../constants/roles';
 
 function DetailRow({ label, value }) {
   return (
-    <div className="flex justify-between gap-4 border-b border-border py-2 text-sm last:border-0">
+    <div className="flex flex-col gap-1 border-b border-border py-2 text-sm last:border-0 sm:flex-row sm:justify-between sm:gap-4">
       <span className="text-slate-500">{label}</span>
-      <span className="text-right font-medium text-slate-800">{value || '—'}</span>
+      <span className="font-medium text-slate-800 sm:text-right">{value || '—'}</span>
     </div>
   );
 }

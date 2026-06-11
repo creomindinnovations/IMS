@@ -146,14 +146,18 @@ export default function AdminTutorials() {
       </form>
       <ul className="space-y-2">
         {list.map((t) => (
-          <li key={t.id} className="card flex items-center justify-between gap-4">
-            <span>
-              {t.title}{' '}
+          <li key={t.id} className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <span className="min-w-0">
+              <span className="font-medium">{t.title}</span>{' '}
               <span className="text-xs text-slate-500">
                 ({t.category} · {t.type})
               </span>
             </span>
-            <Button variant="danger" onClick={() => deleteTutorial(t.id).then(load)}>
+            <Button
+              variant="danger"
+              className="w-full shrink-0 sm:w-auto"
+              onClick={() => deleteTutorial(t.id).then(load)}
+            >
               Delete
             </Button>
           </li>

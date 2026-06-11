@@ -88,9 +88,21 @@ export default function AdminAttendance() {
 
   return (
     <PageWrapper title="Attendance">
-      <div className="mb-4 flex flex-wrap items-end gap-4">
-        <Input label="Filter date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        <Button variant="secondary" onClick={exportCsv} disabled={rows.length === 0}>
+      <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end">
+        <div className="w-full sm:w-auto">
+          <Input
+            label="Filter date"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </div>
+        <Button
+          variant="secondary"
+          className="w-full sm:w-auto"
+          onClick={exportCsv}
+          disabled={rows.length === 0}
+        >
           Download CSV
         </Button>
       </div>

@@ -174,8 +174,8 @@ export default function ManageInterns() {
       <p className="mb-4 text-sm text-slate-600">
         Add interns here. Each intern gets login credentials to use on the sign-in page.
       </p>
-      <div className="mb-4 flex justify-end">
-        <Button onClick={openCreateModal}>Add Intern</Button>
+      <div className="mb-4 flex justify-stretch sm:justify-end">
+        <Button className="w-full sm:w-auto" onClick={openCreateModal}>Add Intern</Button>
       </div>
       <DataTable columns={columns} rows={interns} rowKey="uid" />
 

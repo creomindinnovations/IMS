@@ -46,12 +46,18 @@ export default function Announcements() {
       </form>
       <ul className="space-y-2">
         {list.map((a) => (
-          <li key={a.id} className="card flex justify-between">
-            <div>
+          <li key={a.id} className="card flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0 flex-1">
               <p className="font-medium">{a.title}</p>
-              <p className="text-sm text-slate-600">{a.body}</p>
+              <p className="mt-1 text-sm text-slate-600">{a.body}</p>
             </div>
-            <Button variant="danger" onClick={() => deleteAnnouncement(a.id).then(load)}>Delete</Button>
+            <Button
+              variant="danger"
+              className="w-full shrink-0 sm:w-auto"
+              onClick={() => deleteAnnouncement(a.id).then(load)}
+            >
+              Delete
+            </Button>
           </li>
         ))}
       </ul>

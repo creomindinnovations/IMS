@@ -52,7 +52,7 @@ function TutorialMedia({ tutorial }) {
   if (type === 'pdf' && url) {
     return (
       <div className="mt-3">
-        <iframe title={title} src={url} className="h-96 w-full rounded-lg border border-border" />
+        <iframe title={title} src={url} className="h-64 w-full rounded-lg border border-border sm:h-96" />
       </div>
     );
   }
@@ -150,7 +150,7 @@ export default function TutorialsPage() {
             : 'No tutorials in this category yet.'}
         </p>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {filtered.map((t) => (
             <div key={t.id} className="card">
               <span className="text-xs text-accent">{getCategoryLabel(t.category)}</span>

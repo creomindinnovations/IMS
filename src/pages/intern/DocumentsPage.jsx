@@ -25,10 +25,18 @@ export default function DocumentsPage() {
         ) : (
           <ul className="mt-4 space-y-2">
             {letters.map((l) => (
-              <li key={l.firestoreId} className="flex items-center justify-between border-b border-border py-2">
-                <span className="font-mono text-sm">{l.id}</span>
+              <li
+                key={l.firestoreId}
+                className="flex flex-col gap-2 border-b border-border py-3 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <span className="break-all font-mono text-sm">{l.id}</span>
                 {l.pdfUrl && (
-                  <a href={l.pdfUrl} target="_blank" rel="noreferrer" className="text-accent text-sm">
+                  <a
+                    href={l.pdfUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm text-accent hover:underline"
+                  >
                     Download PDF
                   </a>
                 )}
@@ -44,13 +52,21 @@ export default function DocumentsPage() {
         ) : (
           <ul className="mt-4 space-y-2">
             {certs.map((c) => (
-              <li key={c.id} className="flex items-center justify-between border-b border-border py-2">
-                <span>
-                  <span className="font-mono text-sm">{c.certId}</span>
+              <li
+                key={c.id}
+                className="flex flex-col gap-2 border-b border-border py-3 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <span className="flex flex-wrap items-center gap-2">
+                  <span className="break-all font-mono text-sm">{c.certId}</span>
                   <Badge status={c.status} />
                 </span>
                 {c.status === 'approved' && c.pdfUrl && (
-                  <a href={c.pdfUrl} target="_blank" rel="noreferrer" className="text-accent text-sm">
+                  <a
+                    href={c.pdfUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm text-accent hover:underline"
+                  >
                     Download PDF
                   </a>
                 )}

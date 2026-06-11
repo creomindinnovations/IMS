@@ -12,7 +12,7 @@ function LiveClock() {
     return () => clearInterval(id);
   }, []);
   return (
-    <p className="font-mono text-2xl font-semibold text-primary tabular-nums">
+    <p className="font-mono text-xl font-semibold text-primary tabular-nums sm:text-2xl">
       {now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
     </p>
   );
@@ -82,12 +82,12 @@ export default function CheckInButton({ uid, todayRecord, onUpdate }) {
         </div>
       )}
 
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <Button
           onClick={handleCheckIn}
           disabled={loading || hasCheckIn}
           aria-label="Check in"
-          className="min-w-[120px]"
+          className="w-full sm:min-w-[120px] sm:w-auto"
         >
           {loading && !hasCheckIn ? '…' : 'Check In'}
         </Button>
@@ -96,7 +96,7 @@ export default function CheckInButton({ uid, todayRecord, onUpdate }) {
           onClick={handleCheckOut}
           disabled={loading || !hasCheckIn || hasCheckOut}
           aria-label="Check out"
-          className="min-w-[120px]"
+          className="w-full sm:min-w-[120px] sm:w-auto"
         >
           {loading && hasCheckIn && !hasCheckOut ? '…' : 'Check Out'}
         </Button>

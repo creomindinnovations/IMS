@@ -1,7 +1,12 @@
 import { create } from 'zustand';
 
+function getInitialSidebarOpen() {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(min-width: 768px)').matches;
+}
+
 export const useUiStore = create((set) => ({
-  sidebarOpen: true,
+  sidebarOpen: getInitialSidebarOpen(),
   toasts: [],
   toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),
   setSidebarOpen: (open) => set({ sidebarOpen: open }),

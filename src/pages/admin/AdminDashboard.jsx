@@ -49,7 +49,7 @@ export default function AdminDashboard() {
 
   return (
     <PageWrapper title="Admin Dashboard">
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard icon="👥" label="Active interns" value={internCount} />
         <StatCard icon="✅" label="Present today" value={presentToday} />
         <StatCard icon="📚" label="Tutorials" value={tutorialCount} />

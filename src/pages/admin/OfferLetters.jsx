@@ -59,17 +59,17 @@ export default function OfferLetters() {
 
   return (
     <PageWrapper title="Offer Letters">
-      <div className="card mb-6 flex flex-wrap items-end gap-4">
-        <label className="text-sm">
+      <div className="card mb-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end">
+        <label className="w-full text-sm sm:min-w-[200px] sm:flex-1">
           Select intern
-          <select className="input-field mt-1 min-w-[200px]" value={selected} onChange={(e) => setSelected(e.target.value)}>
+          <select className="input-field mt-1" value={selected} onChange={(e) => setSelected(e.target.value)}>
             <option value="">Choose…</option>
             {interns.map((i) => (
               <option key={i.uid} value={i.uid}>{i.name}</option>
             ))}
           </select>
         </label>
-        <Button onClick={generate} disabled={!selected}>Generate PDF</Button>
+        <Button className="w-full sm:w-auto" onClick={generate} disabled={!selected}>Generate PDF</Button>
       </div>
       <div className="overflow-hidden" style={{ position: 'absolute', left: -9999 }}>
         <div ref={templateRef}>
